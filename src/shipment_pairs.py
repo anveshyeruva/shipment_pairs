@@ -34,7 +34,7 @@ def remove_intra(shipments):
     """remove_intra removes any records in which the origin and destination are the
     same country.
     """
-    pass
+    return [shipment for shipment in shipments if shipment[0] != shipment[1]]
 
 
 def collect_pairs(shipments):
@@ -61,7 +61,21 @@ def collect_pairs(shipments):
         ['IN', 'CA', 12, 5],
     ]
     """
-    pass
+
+    shipment_pairs = []
+    shipments = sorted(shipments, key=lambda x: x[2], reverse=True)
+    for i in range(len(shipments) - 1):
+        current_shipment = shipments[i]
+        next_shipment = shipments[i + 1]
+        if current_shipment[0] == next_shipment[0]:
+            # same origin, so just add the quantities
+            shipment_pairs.append(
+                [current_shipment[0], current_shipment[1], current_shipment[2] + next_shipment[2], next_shipment[2]])
+        else:
+            # different origins, so create a new pair
+            shipment_pairs.append([current_shipment[0], current_shipment[1], current_shipment[2], 0])
+            shipment_pairs.append([next_shipment[0], next_shipment[1], 0, next_shipment[2]])
+    return shipment_pairs
 
 
 if __name__ == '__main__':
@@ -75,5 +89,3 @@ if __name__ == '__main__':
     shipment_pairs = collect_pairs(SHIPMENTS)
     print('\n', '#' * 80, ' ' * 30 + 'Pairs collected', '#' * 80, sep='\n')
     print(shipment_pairs)
-
-
