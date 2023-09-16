@@ -32,7 +32,6 @@ def remove_intra(shipments):
     """remove_intra removes any records in which the origin and destination are the
     same country.
     """
-    # return [shipment for shipment in shipments if shipment[0] != shipment[1]]
 
     export_only = []
     for shipment in shipments:
