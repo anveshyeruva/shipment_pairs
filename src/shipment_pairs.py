@@ -62,6 +62,7 @@ def collect_pairs(shipments):
 
     shipment_pairs = []
     shipments = sorted(shipments, key=lambda x: x[2], reverse=True)
+
     for i in range(len(shipments) - 1):
         current_shipment = shipments[i]
         next_shipment = shipments[i + 1]
