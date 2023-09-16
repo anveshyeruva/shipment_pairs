@@ -75,6 +75,7 @@ def collect_pairs(shipments):
             # different origins, so create a new pair
             shipment_pairs.append([current_shipment[0], current_shipment[1], current_shipment[2], 0])
             shipment_pairs.append([next_shipment[0], next_shipment[1], 0, next_shipment[2]])
+
     return shipment_pairs
 
 
