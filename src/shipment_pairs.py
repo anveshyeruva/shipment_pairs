@@ -1,5 +1,3 @@
-
-
 # FIELDS: ORIGIN, DESTINATION, QUANTITY
 SHIPMENTS = [
     ['US', 'US', 8],
